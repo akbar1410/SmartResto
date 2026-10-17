@@ -1,29 +1,34 @@
 package com.mycompany.smartresto;
 
-public class Minuman extends MenuResto {
-    private String suhu;
+public class Minuman extends MenuResto implements DapatDipesan {
+    private String ukuran;
 
-    public Minuman(String nama, String kategori, double harga, String suhu) {
+    public Minuman(String nama, String kategori, double harga, String ukuran) {
         super(nama, kategori, harga);
-        this.suhu = suhu;
+        this.ukuran = ukuran;
     }
 
-    public String getSuhu() {
-        return this.suhu;
+    public String getUkuran() {
+        return this.ukuran;
     }
 
-    public void setSuhu(String suhu) {
-        this.suhu = suhu;
+    public void setUkuran(String ukuran) {
+        this.ukuran = ukuran;
     }
 
     @Override
     public void tampilkanInfo() {
-        System.out.printf("[Minuman]  Nama: %-18s | Kategori: %-10s | Harga: Rp%-10.2f | Suhu: %s%n",
-                getNama(), getKategori(), getHarga(), this.suhu);
+        System.out.printf("[Minuman]  Nama: %-18s | Kategori: %-10s | Harga: Rp%-10.0f | Ukuran: %s%n",
+                getNama(), getKategori(), getHarga(), this.ukuran);
     }
 
     @Override
-    public void infoPenyajian() {
-        System.out.println("-> Penyajian: Disajikan dalam gelas dingin/hangat dengan sedotan.");
+    public void penyajian() {
+        System.out.println("   -> Cara Penyajian: Disajikan dingin dengan es batu di gelas tinggi.");
+    }
+
+    @Override
+    public void prosesPesanan() {
+        System.out.println("   -> [PROSES BAR] Minuman sedang diracik dan disiapkan.");
     }
 }

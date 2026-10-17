@@ -1,6 +1,6 @@
 package com.mycompany.smartresto;
 
-public class MenuResto {
+public abstract class MenuResto {
     private String nama;
     private String kategori;
     private double harga;
@@ -38,16 +38,14 @@ public class MenuResto {
         if (harga > 0) {
             this.harga = harga;
         } else {
-            System.out.println("[-] Harga tidak valid! Set default Rp10.000");
-            this.harga = 10000;
+            System.out.println("Harga tidak valid!");
+            this.harga = 5000;
         }
     }
 
     public void tampilkanInfo() {
-        System.out.printf("Nama: %-18s | Kategori: %-10s | Harga: Rp%.2f", this.nama, this.kategori, this.harga);
+        System.out.printf("Nama: %-20s | Kategori: %-10s | Harga: Rp%.0f", this.nama, this.kategori, this.harga);
     }
 
-    public void infoPenyajian() {
-        System.out.println("-> Standar penyajian resto: Disajikan segar dari dapur.");
-    }
+    public abstract void penyajian();
 }

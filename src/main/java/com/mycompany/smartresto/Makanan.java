@@ -1,29 +1,40 @@
 package com.mycompany.smartresto;
 
-public class Makanan extends MenuResto {
-    private String tingkatPedas;
+public class Makanan extends MenuResto implements DapatDipesan, DapatDinilai {
+    private boolean pedas;
 
-    public Makanan(String nama, String kategori, double harga, String tingkatPedas) {
+    public Makanan(String nama, String kategori, double harga, boolean pedas) {
         super(nama, kategori, harga);
-        this.tingkatPedas = tingkatPedas;
+        this.pedas = pedas;
     }
 
-    public String getTingkatPedas() {
-        return this.tingkatPedas;
+    public boolean isPedas() {
+        return this.pedas;
     }
 
-    public void setTingkatPedas(String tingkatPedas) {
-        this.tingkatPedas = tingkatPedas;
+    public void setPedas(boolean pedas) {
+        this.pedas = pedas;
     }
 
     @Override
     public void tampilkanInfo() {
-        System.out.printf("[Makanan]  Nama: %-18s | Kategori: %-10s | Harga: Rp%-10.2f | Level Pedas: %s%n",
-                getNama(), getKategori(), getHarga(), this.tingkatPedas);
+        String level = isPedas() ? "Pedas" : "Tidak Pedas";
+        System.out.printf("[Makanan]  Nama: %-18s | Kategori: %-10s | Harga: Rp%-10.0f | Rasa: %s%n",
+                getNama(), getKategori(), getHarga(), level);
     }
 
     @Override
-    public void infoPenyajian() {
-        System.out.println("-> Penyajian: Disajikan piring hangat bersama sajian pelengkap.");
+    public void penyajian() {
+        System.out.println("   -> Cara Penyajian: Disajikan hangat dengan piring keramik.");
+    }
+
+    @Override
+    public void prosesPesanan() {
+        System.out.println("   -> [PROSES DAPUR] Makanan sedang dimasak oleh Chef.");
+    }
+
+    @Override
+    public void beriRating(int bintang) {
+        System.out.println("   -> [RATING ULASAN] Makanan ini mendapat nilai " + bintang + "/5 Bintang dari pelanggan.");
     }
 }

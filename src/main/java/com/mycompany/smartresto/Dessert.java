@@ -1,30 +1,35 @@
 package com.mycompany.smartresto;
 
-public class Dessert extends MenuResto {
-    private boolean isDingin;
+public class Dessert extends MenuResto implements DapatDinilai {
+    private boolean manisDingin;
 
-    public Dessert(String nama, String kategori, double harga, boolean isDingin) {
+    public Dessert(String nama, String kategori, double harga, boolean manisDingin) {
         super(nama, kategori, harga);
-        this.isDingin = isDingin;
+        this.manisDingin = manisDingin;
     }
 
-    public boolean isIsDingin() {
-        return this.isDingin;
+    public boolean isManisDingin() {
+        return this.manisDingin;
     }
 
-    public void setIsDingin(boolean isDingin) {
-        this.isDingin = isDingin;
+    public void setManisDingin(boolean manisDingin) {
+        this.manisDingin = manisDingin;
     }
 
     @Override
     public void tampilkanInfo() {
-        String statusDingin = this.isDingin ? "Sajian Dingin/Es" : "Suhu Ruangan/Warm";
-        System.out.printf("[Dessert]  Nama: %-18s | Kategori: %-10s | Harga: Rp%-10.2f | Jenis: %s%n",
-                getNama(), getKategori(), getHarga(), statusDingin);
+        String jenis = isManisDingin() ? "Es/Suhu Dingin" : "Suhu Ruang";
+        System.out.printf("[Dessert]  Nama: %-18s | Kategori: %-10s | Harga: Rp%-10.0f | Tipe: %s%n",
+                getNama(), getKategori(), getHarga(), jenis);
     }
 
     @Override
-    public void infoPenyajian() {
-        System.out.println("-> Penyajian: Disajikan manis sebagai penutup hidangan.");
+    public void penyajian() {
+        System.out.println("   -> Cara Penyajian: Disajikan cantik pada piring kue.");
+    }
+
+    @Override
+    public void beriRating(int bintang) {
+        System.out.println("   -> [RATING ULASAN] Dessert ini mendapat ulasan " + bintang + "/5 Bintang dari pelanggan.");
     }
 }
